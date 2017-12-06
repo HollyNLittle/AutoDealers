@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0af0a7e0862f4ee0b4c74d8a0c3d3eb4" Name="Diagram1">
+        <EntityTypeShape EntityType="AutoDealerModel.Auto" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoDealerModel.Autos_BuyersID" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoDealerModel.Buyer" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="AutoDealerModel.FK_Autos_BuyersID_Autos" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoDealerModel.FK_Autos_BuyersID_Autos1" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoDealerModel.FK_Autos_BuyersID_Autos_BuyersID1" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoDealerModel.FK_Autos_BuyersID_Buyers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

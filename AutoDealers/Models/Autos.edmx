@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AutoDealerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autos">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VIN" Type="nvarchar" MaxLength="50" />
+          <Property Name="YearMade" Type="date" />
+          <Property Name="Make" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Autos_BuyersID">
+          <Key>
+            <PropertyRef Name="Autos_BuyersID" />
+          </Key>
+          <Property Name="Autos_BuyersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AutoID" Type="int" />
+          <Property Name="BuyerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Buyers">
+          <Key>
+            <PropertyRef Name="BuyerID" />
+          </Key>
+          <Property Name="BuyerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Autos_BuyersID_Autos">
+          <End Role="Autos" Type="Self.Autos" Multiplicity="0..1" />
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autos">
+              <PropertyRef Name="AutoID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autos_BuyersID_Autos_BuyersID1">
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="1" />
+          <End Role="Autos_BuyersID1" Type="Self.Autos_BuyersID" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Autos_BuyersID">
+              <PropertyRef Name="Autos_BuyersID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID1">
+              <PropertyRef Name="Autos_BuyersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autos_BuyersID_Autos1">
+          <End Role="Autos" Type="Self.Autos" Multiplicity="0..1" />
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autos">
+              <PropertyRef Name="AutoID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autos_BuyersID_Buyers">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="0..1" />
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="BuyerID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutoDealerModelStoreContainer">
+          <EntitySet Name="Autos" EntityType="Self.Autos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autos_BuyersID" EntityType="Self.Autos_BuyersID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Autos_BuyersID_Autos" Association="Self.FK_Autos_BuyersID_Autos">
+            <End Role="Autos" EntitySet="Autos" />
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autos_BuyersID_Autos_BuyersID1" Association="Self.FK_Autos_BuyersID_Autos_BuyersID1">
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+            <End Role="Autos_BuyersID1" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autos_BuyersID_Autos1" Association="Self.FK_Autos_BuyersID_Autos1">
+            <End Role="Autos" EntitySet="Autos" />
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autos_BuyersID_Buyers" Association="Self.FK_Autos_BuyersID_Buyers">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutoDealerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YearMade" Type="DateTime" Precision="0" />
+          <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Autos_BuyersID" Relationship="Self.FK_Autos_BuyersID_Autos" FromRole="Autos" ToRole="Autos_BuyersID" />
+          <NavigationProperty Name="Autos_BuyersID1" Relationship="Self.FK_Autos_BuyersID_Autos1" FromRole="Autos" ToRole="Autos_BuyersID" />
+        </EntityType>
+        <EntityType Name="Autos_BuyersID">
+          <Key>
+            <PropertyRef Name="Autos_BuyersID1" />
+          </Key>
+          <Property Name="Autos_BuyersID1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AutoID" Type="Int32" />
+          <Property Name="BuyerID" Type="Int32" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_Autos_BuyersID_Autos" FromRole="Autos_BuyersID" ToRole="Autos" />
+          <NavigationProperty Name="Auto1" Relationship="Self.FK_Autos_BuyersID_Autos1" FromRole="Autos_BuyersID" ToRole="Autos" />
+          <NavigationProperty Name="Autos_BuyersID11" Relationship="Self.FK_Autos_BuyersID_Autos_BuyersID1" FromRole="Autos_BuyersID" ToRole="Autos_BuyersID1" />
+          <NavigationProperty Name="Autos_BuyersID2" Relationship="Self.FK_Autos_BuyersID_Autos_BuyersID1" FromRole="Autos_BuyersID1" ToRole="Autos_BuyersID" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK_Autos_BuyersID_Buyers" FromRole="Autos_BuyersID" ToRole="Buyers" />
+        </EntityType>
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="BuyerID" />
+          </Key>
+          <Property Name="BuyerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Autos_BuyersID" Relationship="Self.FK_Autos_BuyersID_Buyers" FromRole="Buyers" ToRole="Autos_BuyersID" />
+        </EntityType>
+        <Association Name="FK_Autos_BuyersID_Autos">
+          <End Role="Autos" Type="Self.Auto" Multiplicity="0..1" />
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autos">
+              <PropertyRef Name="AutoID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autos_BuyersID_Autos1">
+          <End Role="Autos" Type="Self.Auto" Multiplicity="0..1" />
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autos">
+              <PropertyRef Name="AutoID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autos_BuyersID_Autos_BuyersID1">
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="1" />
+          <End Role="Autos_BuyersID1" Type="Self.Autos_BuyersID" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Autos_BuyersID">
+              <PropertyRef Name="Autos_BuyersID1" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID1">
+              <PropertyRef Name="Autos_BuyersID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autos_BuyersID_Buyers">
+          <End Role="Buyers" Type="Self.Buyer" Multiplicity="0..1" />
+          <End Role="Autos_BuyersID" Type="Self.Autos_BuyersID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="BuyerID" />
+            </Principal>
+            <Dependent Role="Autos_BuyersID">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutoDealerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autos" EntityType="Self.Auto" />
+          <EntitySet Name="Autos_BuyersID" EntityType="Self.Autos_BuyersID" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyer" />
+          <AssociationSet Name="FK_Autos_BuyersID_Autos" Association="Self.FK_Autos_BuyersID_Autos">
+            <End Role="Autos" EntitySet="Autos" />
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autos_BuyersID_Autos1" Association="Self.FK_Autos_BuyersID_Autos1">
+            <End Role="Autos" EntitySet="Autos" />
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autos_BuyersID_Autos_BuyersID1" Association="Self.FK_Autos_BuyersID_Autos_BuyersID1">
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+            <End Role="Autos_BuyersID1" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autos_BuyersID_Buyers" Association="Self.FK_Autos_BuyersID_Buyers">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Autos_BuyersID" EntitySet="Autos_BuyersID" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AutoDealerModelStoreContainer" CdmEntityContainer="AutoDealerEntities">
+          <EntitySetMapping Name="Autos">
+            <EntityTypeMapping TypeName="AutoDealerModel.Auto">
+              <MappingFragment StoreEntitySet="Autos">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="YearMade" ColumnName="YearMade" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Autos_BuyersID">
+            <EntityTypeMapping TypeName="AutoDealerModel.Autos_BuyersID">
+              <MappingFragment StoreEntitySet="Autos_BuyersID">
+                <ScalarProperty Name="Autos_BuyersID1" ColumnName="Autos_BuyersID" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buyers">
+            <EntityTypeMapping TypeName="AutoDealerModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyers">
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
